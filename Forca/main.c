@@ -1,9 +1,7 @@
-// Versao corrigida
 // Jogo da Forca
 // Feito por Igor Mechi Sonehara
-// Programação II
+// ProgramaÃ§Ã£o II
 // Prof. Daniele Frosoni
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,27 +10,10 @@
 #include <ctype.h>
 #include <time.h>
 #include <windows.h>
-#define chave 25 // Chave da Cifra de Cesar
+#define CHAVE 25 // Chave da Cifra de Cesar
 #define TAM 50
 
-void verificarSeArquivoExiste()// Versao corrigida
-// Jogo da Forca
-// Feito por Igor Mechi Sonehara
-// Programação II
-// Prof. Daniele Frosoni
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <locale.h>
-#include <string.h>
-#include <ctype.h>
-#include <time.h>
-#include <windows.h>
-#define chave 25 // Chave da Cifra de Cesar
-#define TAM 50
-
-void verificarSeArquivoExiste() // Se o arquivo não existir ele cria o arquivo sem apresentar mensagem de erro
+void verificarSeArquivoExiste() // Se o arquivo nï¿½o existir ele cria o arquivo sem apresentar mensagem de erro
 {
     FILE *arq;
     arq = fopen("BancoDePalavras.txt", "r");
@@ -80,7 +61,7 @@ int verificarQtdPalavrasArquivo()
         fgets(linha, TAM, arq);
         if(ferror(arq) != 0)
         {
-            printf("\nErro - Não foi possível ler o arquivo.");
+            printf("\nErro - Nï¿½o foi possï¿½vel ler o arquivo.");
         }
 
         qtdPalavras = atoi(linha);
@@ -111,7 +92,7 @@ void incrementarQtdPalavrasArquivo()
         fputs(linha, arq);
         if(ferror(arq) != 0)
         {
-            printf("\nErro - Não foi possível escrever a qtd no arquivo.");
+            printf("\nErro - Nï¿½o foi possï¿½vel escrever a qtd no arquivo.");
         }
 
         fclose(arq);
@@ -135,7 +116,7 @@ void escreverPalavraFimArquivo(char _palavra[TAM])
         fputs(_palavra, arq);
         if(ferror(arq) != 0)
         {
-            printf("\nErro - Não foi possível escrever a palavra no arquivo.");
+            printf("\nErro - Nï¿½o foi possï¿½vel escrever a palavra no arquivo.");
         }
 
         fclose(arq);
@@ -173,13 +154,13 @@ void configurarJogo()
         system("cls");
         printf("*JOGO DA FORCA*\n\n");
 
-        printf(">>> CONFIGURAÇÃO DO JOGO:\n\n");
+        printf(">>> CONFIGURAï¿½ï¿½O DO JOGO:\n\n");
 
-        printf("Escolha uma opção:\n");
+        printf("Escolha uma opï¿½ï¿½o:\n");
         printf("A) Adicionar nova palavra ao jogo.\n");
-        printf("B) Concluir configuração.\n\n");
+        printf("B) Concluir configuraï¿½ï¿½o.\n\n");
 
-        printf("Opção escolhida: ");
+        printf("Opï¿½ï¿½o escolhida: ");
         fflush(stdin);
         scanf("%c", &opcao);
         opcao = toupper(opcao);
@@ -192,7 +173,7 @@ void configurarJogo()
             case 'B':
                 break;
             default:
-                printf("Opção inválida! Tecle para continuar...");
+                printf("Opï¿½ï¿½o invï¿½lida! Tecle para continuar...");
                 fflush(stdin);
         }
         scanf("%c", &c);
@@ -211,11 +192,11 @@ void menu()
 
         printf(">>> MENU:\n\n");
 
-        printf("1) Configuração do Jogo\n");
+        printf("1) Configuraï¿½ï¿½o do Jogo\n");
         printf("2) Jogar\n");
         printf("3) Sair\n\n");
 
-        printf("Digite a opção que deseja escolher: ");
+        printf("Digite a opï¿½ï¿½o que deseja escolher: ");
         scanf("%d", &opcao);
 
         switch(opcao)
@@ -229,7 +210,7 @@ void menu()
             case 3:
                 break;
             default:
-                printf("Opção inválida! Tecle para continuar...");
+                printf("Opï¿½ï¿½o invï¿½lida! Tecle para continuar...");
                 fflush(stdin);
                 scanf("%c", &c);
         }
@@ -252,7 +233,7 @@ int iniciarJogo()
     {
     	int qtdPalavras = verificarQtdPalavrasArquivo();
 
-		if(!qtdPalavras) // Se não houver palavras no arquivo ele volta para o menu
+		if(!qtdPalavras) // Se nï¿½o houver palavras no arquivo ele volta para o menu
         {
             printf("Voce precisa adicionar ao menos uma palavra no banco de dados!\n");
             Sleep(2500);
@@ -264,7 +245,7 @@ int iniciarJogo()
 		int numero_aleatorio = 1 + rand() % qtdPalavras;
 	    int i;
 
-        if(qtdPalavras) // Caso haja ao menos uma palavra no arquivo, ele sorteia um número aleatório entre 1 e o número de palavras no arquivo
+        if(qtdPalavras) // Caso haja ao menos uma palavra no arquivo, ele sorteia um nï¿½mero aleatï¿½rio entre 1 e o nï¿½mero de palavras no arquivo
         {
         	char palavra[TAM];
             for(i=0; i<numero_aleatorio+1; i++)
@@ -273,7 +254,7 @@ int iniciarJogo()
 
                 if(ferror(arq) != 0)
                 {
-                    printf("\nErro - Não foi possível ler o arquivo.");
+                    printf("\nErro - Nï¿½o foi possï¿½vel ler o arquivo.");
                 }
             }
             fclose(arq);
@@ -307,7 +288,7 @@ int encriptar(char _palavra[TAM])
 
         if(ch >= 'A' && ch <= 'Z')
         {
-            ch = ch + chave;
+            ch = ch + CHAVE;
 
             if(ch > 'Z')
             {
@@ -330,7 +311,7 @@ int desencriptar(char palavra[TAM])
 
         if(ch >= 'A' && ch <= 'Z')
         {
-            ch = ch - chave;
+            ch = ch - CHAVE;
 
             if(ch < 'A')
             {
@@ -365,9 +346,9 @@ void jogar(char palavra[TAM], char palavra_oculta[TAM])
         printf("*JOGO DA FORCA*\n\n");
         printf(">>> A palavra secreta tem este tamanho:\n\n");
         printf(" %s \n\n", palavra_oculta);
-        printf(">>> Lista de Letras já selecionadas: %s\n\n", letras_ja_selecionadas);
+        printf(">>> Lista de Letras jï¿½ selecionadas: %s\n\n", letras_ja_selecionadas);
 
-        if(vida != 6) // Só mostra o printf caso o jogador erre ao menos uma vez
+        if(vida != 6) // Sï¿½ mostra o printf caso o jogador erre ao menos uma vez
         {
             printf(">>> Enforcado: \n\n");
         }
@@ -397,23 +378,23 @@ void jogar(char palavra[TAM], char palavra_oculta[TAM])
             //letra[0] = toupper(letra[0]);
 
         char c;
-        do // Faz com que o usuário digite apenas letras (adaptei da internet)
+        do // Faz com que o usuï¿½rio digite apenas letras (adaptei da internet)
         {
-            c = getch(); //captura o caractere digitado pelo usuário
+            c = getch(); //captura o caractere digitado pelo usuï¿½rio
             if (isalpha(c) != 0 && c != 13) //se for uma letra
             {
                 letra[0] = c;
                 printf ("%c", c); //exibe o caractere digitado
             }
-            else if(c == 8) //se for pressionada a tecla BACKSPACE e houver caracteres já digitados
+            else if(c == 8) //se for pressionada a tecla BACKSPACE e houver caracteres jï¿½ digitados
             {
                 letra[0] = '\0';
-                printf("\b \b"); //o caractere digitado é apagado da tela
+                printf("\b \b"); //o caractere digitado ï¿½ apagado da tela
             }
 
         letra[0] = toupper(letra[0]);
 
-        }while(c != 13); // Quando o ENTER for pressionado o loop é encerrado
+        }while(c != 13); // Quando o ENTER for pressionado o loop ï¿½ encerrado
 
         for(i=0; i<strlen(palavra); i++) // Verifica se a letra ja foi digitada
         {
@@ -421,7 +402,7 @@ void jogar(char palavra[TAM], char palavra_oculta[TAM])
             {
                 if(letra[0] == letras_digitadas[i] || letra[0] == letras_ja_selecionadas[i])
                 {
-                    printf("\nLetra inválida ou já digitada, tente novamente...\n");
+                    printf("\nLetra invï¿½lida ou jï¿½ digitada, tente novamente...\n");
                     Sleep(1500);
                     x++;
                     break;
@@ -432,12 +413,12 @@ void jogar(char palavra[TAM], char palavra_oculta[TAM])
                 //palavra_oculta[i] = palavra[i];
                 palavra_oculta[i] = letra[0];
                 acertos++;
-                x++; // Adiciona 1 ao contador x, dessa forma ele não entra no if abaixo
+                x++; // Adiciona 1 ao contador x, dessa forma ele nï¿½o entra no if abaixo
                 }
             }
         }
 
-        if(x == 0) // Caso a letra escolhida não seja correta
+        if(x == 0) // Caso a letra escolhida nï¿½o seja correta
         {
 
             vida--;
@@ -470,10 +451,10 @@ void jogar(char palavra[TAM], char palavra_oculta[TAM])
             }
 
         }
-        else if(acertos == strlen(palavra)-1) // Se o número de acertos for igual ao tamanho da palavra o jogador ganha
+        else if(acertos == strlen(palavra)-1) // Se o nï¿½mero de acertos for igual ao tamanho da palavra o jogador ganha
             {
                 printf("\n\n VOCE GANHOU!");
-                printf("\n A PALAVRA É: %s", palavra);
+                printf("\n A PALAVRA ï¿½: %s", palavra);
                 break;
             }
     }
